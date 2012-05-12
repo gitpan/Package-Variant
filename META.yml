@@ -19,5 +19,7 @@ no_index:
     - inc
 requires:
   Carp: 0
+  Import::Into: 1
+  Module::Runtime: 0.013
   strictures: 1
-version: 1.001000
+version: 1.001001
