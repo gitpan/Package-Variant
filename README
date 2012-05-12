@@ -9,7 +9,7 @@ SYNOPSIS
         # what modules to 'use'
         importing => ['Moo::Role'],
         # proxied subroutines
-        subs => [qw( has around before after extends )],
+        subs => [ qw(has around before after with) ],
 
       sub make_variant {
         my ($class, $target_package, %arguments) = @_;
@@ -100,7 +100,7 @@ DESCRIPTION
     generating subroutine by simply importing your package.
 
       use My::Variant;
-      my $new_variant_package = Variant( @variant_arguments );
+      my $new_variant_package = Variant(@variant_arguments);
 
     The package is now fully initialized and used. You can import the
     subroutine under a different name by specifying an "as" argument.
@@ -124,9 +124,9 @@ OPTIONS
 
   importing
     This option is a hash reference mapping package names to array
-    references containing import arguments. The packages will be "use"d with
-    the given arguments by every variation before the "make_variant" method
-    is asked to create the package.
+    references containing import arguments. The packages will be imported
+    with the given arguments by every variation before the "make_variant"
+    method is asked to create the package (this is done using Import::Into).
 
     If import order is important to you, you can also pass the "importing"
     arguments as a flat array reference:
@@ -148,7 +148,7 @@ OPTIONS
     If you just want to import a single package's default exports, you can
     also pass a string instead:
 
-      use PAckage::Variant importing => 'Package';
+      use Package::Variant importing => 'Package';
 
   subs
     An array reference of strings listing the names of subroutines that
@@ -185,7 +185,7 @@ VARIABLE PACKAGE METHODS
     *   as
 
           use Some::Variant::Package as => 'Foo';
-          my $variant_package = Foo( @arguments );
+          my $variant_package = Foo(@arguments);
 
         Exports the generator subroutine under a different name than the
         default.
@@ -195,7 +195,7 @@ VARIABLE PACKAGE METHODS
 
   build_variation_of
       my $variant_package = Package::Variant
-        ->build_variation_of( $variable_package, @arguments );
+        ->build_variation_of($variable_package, @arguments);
 
     This is the dynamic method of creating new variants. It takes the
     $variable_package, which is a pre-declared variable package, and a set
@@ -214,11 +214,14 @@ EXPORTS
     following exports will be available in your variable package:
 
   install
-      install( $method_name, $code_reference );
+      install($method_name, $code_reference);
 
     Installs a method with the given $method_name into the newly created
     variant package. The $code_reference will be used as the body for the
-    method.
+    method, and if Sub::Name is available the coderef will be named. If you
+    want to name it something else, then use:
+
+      install($method_name, $name_to_use, $code_reference);
 
 AUTHOR
     mst - Matt S. Trout (cpan:MSTROUT) <mst@shadowcat.co.uk>
@@ -227,7 +230,7 @@ CONTRIBUTORS
     phaylon - Robert Sedlacek (cpan:PHAYLON) <r.sedlacek@shadowcat.co.uk>
 
 COPYRIGHT
-    Copyright (c) 2010-2011 the "Package::Variant" "AUTHOR" and
+    Copyright (c) 2010-2012 the "Package::Variant" "AUTHOR" and
     "CONTRIBUTORS" as listed above.
 
 LICENSE
