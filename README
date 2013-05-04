@@ -108,7 +108,7 @@ DESCRIPTION
   Dynamic creation of variant packages
     For regular uses, the normal import provides more than enough
     flexibility. However, if you want to create variations of dynamically
-    determined packages, you can use the "build_variation_of" method.
+    determined packages, you can use the "build_variant_of" method.
 
     You can use this to create variations of other packages and pass
     arguments on to them to allow more modular and extensible variations.
@@ -193,9 +193,9 @@ VARIABLE PACKAGE METHODS
 "Package::Variant" METHODS
     These methods are available on "Package::Variant" itself.
 
-  build_variation_of
+  build_variant_of
       my $variant_package = Package::Variant
-        ->build_variation_of($variable_package, @arguments);
+        ->build_variant_of($variable_package, @arguments);
 
     This is the dynamic method of creating new variants. It takes the
     $variable_package, which is a pre-declared variable package, and a set

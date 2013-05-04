@@ -4,7 +4,7 @@
       "mst - Matt S. Trout (cpan:MSTROUT) <mst@shadowcat.co.uk>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "ExtUtils::MakeMaker version 6.64, CPAN::Meta::Converter version 2.120921",
+   "generated_by" : "ExtUtils::MakeMaker version 6.66, CPAN::Meta::Converter version 2.130880",
    "license" : [
       "perl_5"
    ],
@@ -46,5 +46,5 @@
          "url" : "git://git.shadowcat.co.uk/p5sagit/Package-Variant.git"
       }
    },
-   "version" : "1.001003"
+   "version" : "1.001004"
 }
