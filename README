@@ -40,7 +40,7 @@ DESCRIPTION
     variations depending on what parameters are given.
 
     Users of your package will receive a subroutine able to take parameters
-    and return the name of a suitable variant package. The implmenetation
+    and return the name of a suitable variant package. The implementation
     does not care about what kind of package it builds.
 
   Declaring a variable package
@@ -154,7 +154,7 @@ OPTIONS
     An array reference of strings listing the names of subroutines that
     should be proxied. These subroutines are expected to be installed into
     the new variant package by the modules imported with "importing".
-    Subroutines with the same name will be availabe in your declaration
+    Subroutines with the same name will be available in your declaration
     package, and will proxy through to the newly created package when used
     within "make_variant".
 
@@ -189,6 +189,14 @@ VARIABLE PACKAGE METHODS
 
         Exports the generator subroutine under a different name than the
         default.
+
+  build_variant
+      use Some::Variant::Package ();
+      my $variant_package = Some::Variant::Package->build_variant( @arguments );
+
+    This method is provided for you. It will generate a variant package and
+    return its name, just like the generator sub provided by "import". This
+    allows you to avoid importing anything into the consuming package.
 
 "Package::Variant" METHODS
     These methods are available on "Package::Variant" itself.

@@ -7,6 +7,7 @@ t/01simple.t
 t/10argument-types.t
 t/11dynamic-build.t
 t/20moo-param-role.t
+t/30-pragma-leak.t
 META.yml                                 Module YAML meta-data (added by MakeMaker)
 META.json                                Module JSON meta-data (added by MakeMaker)
 README                                   README file (added by Distar)

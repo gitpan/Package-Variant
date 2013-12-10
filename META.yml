@@ -4,10 +4,8 @@ author:
   - 'mst - Matt S. Trout (cpan:MSTROUT) <mst@shadowcat.co.uk>'
 build_requires:
   Test::Fatal: 0
-configure_requires:
-  ExtUtils::MakeMaker: 6.55_01
 dynamic_config: 0
-generated_by: 'ExtUtils::MakeMaker version 6.66, CPAN::Meta::Converter version 2.130880'
+generated_by: 'ExtUtils::MakeMaker version 6.82, CPAN::Meta::Converter version 2.132830'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -17,12 +15,14 @@ no_index:
   directory:
     - t
     - inc
+  package:
+    - string
 requires:
   Carp: 0
   Import::Into: 1
   Module::Runtime: 0.013
   strictures: 1
 resources:
-  homepage: http://git.shadowcat.co.uk/gitweb/gitweb.cgi?p=p5sagit/Package-Variant.git
+  bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Package-Variant
   repository: git://git.shadowcat.co.uk/p5sagit/Package-Variant.git
-version: 1.001004
+version: 1.002000

@@ -2,10 +2,10 @@ package Package::Variant;
 
 use strictures 1;
 use Import::Into;
-use Module::Runtime qw(use_module);
+use Module::Runtime qw(require_module);
 use Carp qw(croak);
 
-our $VERSION = '1.001004'; # 1.1.4
+our $VERSION = '1.002000'; # 1.2.0
 
 $VERSION = eval $VERSION;
 
@@ -54,11 +54,10 @@ my $sub_namer = eval {
 } || sub { $_[-1] };
 
 sub import {
-  my $target = caller;
+  my $variable = caller;
   my $me = shift;
-  my $last = (split '::', $target)[-1];
+  my $last = (split '::', $variable)[-1];
   my $anon = 'A000';
-  my $variable = $target;
   my %args = @_;
   no strict 'refs';
   $Variable{$variable} = {
@@ -71,7 +70,7 @@ sub import {
       map +($_ => sub {}), @{$args{subs}||[]},
     },
   };
-  *{"${target}::import"} = sub {
+  *{"${variable}::import"} = sub {
     my $target = caller;
     my (undef, %arg) = @_;
     my $as = defined($arg{as}) ? $arg{as} : $last;
@@ -82,13 +81,17 @@ sub import {
   };
   my $subs = $Variable{$variable}{subs};
   foreach my $name (keys %$subs) {
-    *{"${target}::${name}"} = sub {
+    *{"${variable}::${name}"} = sub {
       goto &{$subs->{$name}}
     };
   }
-  *{"${target}::install"} = sub {
+  *{"${variable}::install"} = sub {
     goto &{$Variable{$variable}{install}};
-  }
+  };
+  *{"${variable}::build_variant"} = sub {
+    shift;
+    $me->build_variant_of($variable, @_);
+  };
 }
 
 sub build_variant_of {
@@ -96,7 +99,9 @@ sub build_variant_of {
   my $variant_name = "${variable}::_Variant_".++$Variable{$variable}{anon};
   foreach my $to_import (@{$Variable{$variable}{args}{importing}}) {
     my ($pkg, $args) = @$to_import;
-    use_module($pkg)->import::into($variant_name, @{$args});
+    require_module $pkg;
+    eval q{ BEGIN { $pkg->import::into($variant_name, @{$args}) }; 1; }
+      or die $@;
   }
   my $subs = $Variable{$variable}{subs};
   local @{$subs}{keys %$subs} = map $variant_name->can($_), keys %$subs;
@@ -161,7 +166,7 @@ This module allows you to build packages that return different variations
 depending on what parameters are given.
 
 Users of your package will receive a subroutine able to take parameters
-and return the name of a suitable variant package. The implmenetation does
+and return the name of a suitable variant package. The implementation does
 not care about what kind of package it builds.
 
 =head2 Declaring a variable package
@@ -285,7 +290,7 @@ also pass a string instead:
 An array reference of strings listing the names of subroutines that should
 be proxied. These subroutines are expected to be installed into the new
 variant package by the modules imported with L</importing>. Subroutines
-with the same name will be availabe in your declaration package, and will
+with the same name will be available in your declaration package, and will
 proxy through to the newly created package when used within
 L</make_variant>.
 
@@ -326,6 +331,16 @@ The following options can be specified when importing:
 Exports the generator subroutine under a different name than the default.
 
 =back
+
+=head2 build_variant
+
+  use Some::Variant::Package ();
+  my $variant_package = Some::Variant::Package->build_variant( @arguments );
+
+This method is provided for you.  It will generate a variant package
+and return its name, just like the generator sub provided by
+L</import>.  This allows you to avoid importing anything into the
+consuming package.
 
 =head1 C<Package::Variant> METHODS
 

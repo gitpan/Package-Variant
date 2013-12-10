@@ -4,7 +4,7 @@
       "mst - Matt S. Trout (cpan:MSTROUT) <mst@shadowcat.co.uk>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "ExtUtils::MakeMaker version 6.66, CPAN::Meta::Converter version 2.130880",
+   "generated_by" : "ExtUtils::MakeMaker version 6.82, CPAN::Meta::Converter version 2.132830",
    "license" : [
       "perl_5"
    ],
@@ -17,17 +17,15 @@
       "directory" : [
          "t",
          "inc"
+      ],
+      "package" : [
+         "string"
       ]
    },
    "prereqs" : {
       "build" : {
          "requires" : {
             "Test::Fatal" : "0"
-         }
-      },
-      "configure" : {
-         "requires" : {
-            "ExtUtils::MakeMaker" : "6.55_01"
          }
       },
       "runtime" : {
@@ -41,10 +39,15 @@
    },
    "release_status" : "stable",
    "resources" : {
-      "homepage" : "http://git.shadowcat.co.uk/gitweb/gitweb.cgi?p=p5sagit/Package-Variant.git",
+      "bugtracker" : {
+         "mailto" : "bug-Package-Variant@rt.cpan.org",
+         "web" : "https://rt.cpan.org/Public/Dist/Display.html?Name=Package-Variant"
+      },
       "repository" : {
-         "url" : "git://git.shadowcat.co.uk/p5sagit/Package-Variant.git"
+         "type" : "git",
+         "url" : "git://git.shadowcat.co.uk/p5sagit/Package-Variant.git",
+         "web" : "http://git.shadowcat.co.uk/gitweb/gitweb.cgi?p=p5sagit/Package-Variant.git"
       }
    },
-   "version" : "1.001004"
+   "version" : "1.002000"
 }
