@@ -4,9 +4,9 @@
       "mst - Matt S. Trout (cpan:MSTROUT) <mst@shadowcat.co.uk>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "ExtUtils::MakeMaker version 6.82, CPAN::Meta::Converter version 2.132830",
+   "generated_by" : "ExtUtils::MakeMaker version 6.98, CPAN::Meta::Converter version 2.141520",
    "license" : [
-      "perl_5"
+      "unknown"
    ],
    "meta-spec" : {
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
@@ -16,24 +16,27 @@
    "no_index" : {
       "directory" : [
          "t",
-         "inc"
+         "xt"
       ],
       "package" : [
          "string"
       ]
    },
    "prereqs" : {
-      "build" : {
-         "requires" : {
-            "Test::Fatal" : "0"
-         }
-      },
+      "build" : {},
+      "configure" : {},
       "runtime" : {
          "requires" : {
             "Carp" : "0",
             "Import::Into" : "1",
             "Module::Runtime" : "0.013",
+            "perl" : "5.006",
             "strictures" : "1"
+         }
+      },
+      "test" : {
+         "requires" : {
+            "Test::Fatal" : "0"
          }
       }
    },
@@ -49,5 +52,11 @@
          "web" : "http://git.shadowcat.co.uk/gitweb/gitweb.cgi?p=p5sagit/Package-Variant.git"
       }
    },
-   "version" : "1.002000"
+   "version" : "1.002001",
+   "x_realclean" : {
+      "FILES" : [
+         "Distar/",
+         "MANIFEST*"
+      ]
+   }
 }
