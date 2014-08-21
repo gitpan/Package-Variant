@@ -6,7 +6,7 @@ build_requires:
   Test::Fatal: '0'
 dynamic_config: 0
 generated_by: 'ExtUtils::MakeMaker version 6.98, CPAN::Meta::Converter version 2.141520'
-license: unknown
+license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: '1.4'
@@ -26,8 +26,4 @@ requires:
 resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Package-Variant
   repository: git://git.shadowcat.co.uk/p5sagit/Package-Variant.git
-version: '1.002001'
-x_realclean:
-  FILES:
-    - Distar/
-    - MANIFEST*
+version: '1.002002'

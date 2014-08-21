@@ -6,7 +6,7 @@
    "dynamic_config" : 0,
    "generated_by" : "ExtUtils::MakeMaker version 6.98, CPAN::Meta::Converter version 2.141520",
    "license" : [
-      "unknown"
+      "perl_5"
    ],
    "meta-spec" : {
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
@@ -52,11 +52,5 @@
          "web" : "http://git.shadowcat.co.uk/gitweb/gitweb.cgi?p=p5sagit/Package-Variant.git"
       }
    },
-   "version" : "1.002001",
-   "x_realclean" : {
-      "FILES" : [
-         "Distar/",
-         "MANIFEST*"
-      ]
-   }
+   "version" : "1.002002"
 }
